@@ -646,4 +646,56 @@ footer {
 
 .mobile-menu-btn.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Aggiungi questi stili per le icone dei servizi */
+.service-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, var(--primary-color), #ff4d4d);
+    border-radius: 50%;
+    color: white;
+}
+
+.service-icon i {
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.service-icon-secondary {
+    position: absolute;
+    font-size: 1.2rem !important;
+    bottom: 0;
+    right: 0;
+    background: white;
+    color: var(--primary-color);
+    padding: 0.5rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.service-card:hover .service-icon i {
+    transform: scale(1.1);
+}
+
+/* Aggiorna gli stili mobile */
+@media (max-width: 768px) {
+    .service-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .service-icon i {
+        font-size: 1.5rem;
+    }
+
+    .service-icon-secondary {
+        font-size: 1rem !important;
+        padding: 0.4rem;
+    }
 } 
