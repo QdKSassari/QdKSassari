@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://qdksassari.altervista.org/sitemap.xml 
