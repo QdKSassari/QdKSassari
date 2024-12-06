@@ -75,12 +75,90 @@ nav {
     font-family: 'Fredoka One', cursive;
     font-size: 4rem;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 3px 3px 0 var(--primary-color),
+                 6px 6px 0 rgba(0,0,0,0.2);
+    color: white;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: titleFloat 3s ease-in-out infinite;
 }
 
+.hero-content h1::after {
+    content: 'QDK';
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    opacity: 0.8;
+    transform: rotate(-5deg);
+}
+
+/* Animazione di fluttuazione */
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Effetto hover sul titolo */
+.hero-content h1:hover {
+    transform: scale(1.05);
+    text-shadow: 4px 4px 0 var(--primary-color),
+                 8px 8px 0 rgba(0,0,0,0.2);
+}
+
+/* Animazione iniziale */
+@keyframes titleEntry {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.hero-content h1 {
+    animation: titleEntry 1s ease-out forwards,
+               titleFloat 3s ease-in-out infinite 1s;
+}
+
+/* Stile sottotitolo */
 .hero-content p {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: subtitleEntry 1s ease-out 0.5s both;
+    position: relative;
+}
+
+@keyframes subtitleEntry {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content h1::after {
+        font-size: 1rem;
+        bottom: -5px;
+        right: -5px;
+    }
 }
 
 /* Mobile Menu Button */
@@ -171,9 +249,11 @@ nav {
 /* Events */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .event-card {
@@ -181,6 +261,96 @@ nav {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: row;
+}
+
+.event-date {
+    background: var(--gradient);
+    padding: 1.5rem;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.event-date .day {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.event-date .number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0.5rem 0;
+}
+
+.event-date .month {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.event-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.event-info h3 {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.event-info p {
+    color: var(--text-color);
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-info i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* Responsive Events */
+@media (max-width: 768px) {
+    .event-card {
+        flex-direction: column;
+    }
+
+    .event-date {
+        flex-direction: row;
+        justify-content: center;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .event-date .number {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    .event-info {
+        text-align: center;
+    }
+
+    .event-info p {
+        justify-content: center;
+    }
 }
 
 /* Instagram Feed */
@@ -322,5 +492,96 @@ footer {
 
     .service-card {
         margin: 0 1rem;
+    }
+}
+
+/* Stili per la sezione Chi Siamo */
+#chi-siamo {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, var(--light-bg) 50%, white 50%);
+}
+
+#chi-siamo::before {
+    content: '🎤';
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.03;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+#chi-siamo .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1;
+}
+
+#chi-siamo p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+#chi-siamo .highlight {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+#chi-siamo .stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#chi-siamo .stat-item {
+    padding: 1.5rem;
+    background: var(--light-bg);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+#chi-siamo .stat-item:hover {
+    transform: translateY(-5px);
+}
+
+#chi-siamo .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-family: 'Fredoka One', cursive;
+}
+
+#chi-siamo .stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    #chi-siamo {
+        background: var(--light-bg);
+    }
+    
+    #chi-siamo .content-wrapper {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    #chi-siamo .stats-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 } 

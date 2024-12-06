@@ -30,26 +30,25 @@ document.querySelector('.cta-button').addEventListener('click', function(e) {
 function loadEvents() {
     const eventsContainer = document.getElementById('events-container');
     
-    // Dati degli eventi direttamente nel JavaScript per evitare problemi CORS
     const eventsData = {
         "events": [
-
             {
                 "day": "SAB",
                 "number": "07",
                 "month": "DIC",
-                "title": "Karaoke e Cozze",
+                "title": "Karaoke & Cozze - Special Event",
                 "location": "Black&White",
-                "time": "13:00"
+                "time": "13:00",
+                "description": "Pranzo con karaoke e cozze fresche"
             }
         ]
     };
 
     try {
-        eventsContainer.innerHTML = ''; // Pulisce il contenitore
+        eventsContainer.innerHTML = '';
         
         if (eventsData.events.length === 0) {
-            eventsContainer.innerHTML = '<p>Nessun evento programmato</p>';
+            eventsContainer.innerHTML = '<p class="no-events">Nessun evento programmato</p>';
             return;
         }
         
@@ -63,8 +62,9 @@ function loadEvents() {
                     </div>
                     <div class="event-info">
                         <h3>${event.title}</h3>
-                        <p class="location"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
-                        <p class="time"><i class="far fa-clock"></i> Dalle ${event.time}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
+                        <p><i class="far fa-clock"></i> Dalle ${event.time}</p>
+                        ${event.description ? `<p><i class="fas fa-info-circle"></i> ${event.description}</p>` : ''}
                     </div>
                 </div>
             `;
@@ -72,7 +72,7 @@ function loadEvents() {
         });
     } catch (error) {
         console.error('Errore nel caricamento degli eventi:', error);
-        eventsContainer.innerHTML = '<p>Nessun evento programmato</p>';
+        eventsContainer.innerHTML = '<p class="no-events">Nessun evento programmato</p>';
     }
 }
 
