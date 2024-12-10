@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/pacchetti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Header uguale a index.html -->
@@ -24,17 +25,97 @@
     </header>
 
     <main>
-        <!-- Sezione Pacchetti Base -->
+        <!-- Simulatore di Prezzo -->
+        <section class="section price-simulator">
+            <h2>Simula il Tuo Preventivo</h2>
+            <div class="simulator-container">
+                <div class="simulator-form">
+                    <div class="form-group">
+                        <label>Scegli il Pacchetto Base:</label>
+                        <select id="base-package">
+                            <option value="80">Base - 80€</option>
+                            <option value="120">Standard - 120€</option>
+                            <option value="180">Premium - 180€</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Giorno della Settimana:</label>
+                        <select id="day-type">
+                            <option value="1">Lunedì-Giovedì</option>
+                            <option value="1.3">Venerdì (+30%)</option>
+                            <option value="1.5">Sabato (+50%)</option>
+                            <option value="2">Eventi Speciali (+100%)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Servizi Extra:</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" value="30" class="extra"> Ora Aggiuntiva (+30€)
+                            </label>
+                            <label>
+                                <input type="checkbox" value="40" class="extra"> Set Fotografico Aggiuntivo (+40€)
+                            </label>
+                            <label>
+                                <input type="checkbox" value="50" class="extra"> Video Professionale (+50€)
+                            </label>
+                            <label>
+                                <input type="checkbox" value="25" class="extra"> Post Sponsorizzato (+25€)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pacchetto Continuativo:</label>
+                        <select id="continuative">
+                            <option value="1">Singola Serata</option>
+                            <option value="0.85">4 Serate Mensili Infrasettimanali (-15%)</option>
+                            <option value="0.75">12 Serate Stagionali Infrasettimanali (-25%)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Distanza da Sassari (km):</label>
+                        <div class="distance-input">
+                            <input type="number" id="distance" min="0" value="0" step="1">
+                            <span class="info-tooltip" title="Rimborso: 0,30€/km">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                        </div>
+                        <small>Oltre 20km: rimborso 0,30€/km (A/R incluso)</small>
+                    </div>
+                </div>
+
+                <div class="price-result">
+                    <h3>Preventivo Stimato</h3>
+                    <div class="total-price">
+                        <span id="final-price">80</span>€
+                    </div>
+                    <div class="price-breakdown">
+                        <p>Pacchetto Base: <span id="base-price">80</span>€</p>
+                        <p>Extra Selezionati: <span id="extras-price">0</span>€</p>
+                        <p>Maggiorazione Giorno: <span id="day-markup">0</span>€</p>
+                        <p>Sconto Pacchetto: <span id="discount">0</span>€</p>
+                        <p>Rimborso Km: <span id="travel-cost">0</span>€</p>
+                    </div>
+                    <button class="cta-button">Richiedi Preventivo su WhatsApp</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pacchetti Principali con Layout Migliorato -->
         <section class="section packages">
             <div class="content-wrapper">
-                <h2>Pacchetti Principali</h2>
+                <h2>I Nostri Pacchetti</h2>
                 <div class="packages-grid">
                     <!-- Pacchetto Base -->
                     <article class="package-card base">
                         <div class="package-header">
                             <h3>Pacchetto Base</h3>
                             <div class="price">80€</div>
-                            <div class="price-note">IVA esclusa</div>
+                            <div class="price-note">da 80€ (infrasettimanale)</div>
                         </div>
                         <div class="package-content">
                             <ul>
@@ -42,6 +123,7 @@
                                 <li><i class="fas fa-music"></i> 150.000 basi musicali</li>
                                 <li><i class="fas fa-share-alt"></i> 1 post + 1 storia social</li>
                                 <li><i class="fas fa-microphone-alt"></i> Attrezzatura professionale</li>
+                                <li><i class="fas fa-users"></i> Team di 2 persone</li>
                             </ul>
                         </div>
                         <div class="package-footer">
@@ -52,18 +134,18 @@
                     <!-- Pacchetto Standard -->
                     <article class="package-card standard">
                         <div class="package-header">
-                            <div class="badge">Più Popolare</div>
+                            <div class="badge">Più Richiesto</div>
                             <h3>Pacchetto Standard</h3>
                             <div class="price">120€</div>
-                            <div class="price-note">IVA esclusa</div>
+                            <div class="price-note">da 120€ (infrasettimanale)</div>
                         </div>
                         <div class="package-content">
                             <ul>
                                 <li><i class="fas fa-clock"></i> 4 ore di spettacolo</li>
-                                <li><i class="fas fa-camera"></i> 10 foto professionali</li>
-                                <li><i class="fas fa-film"></i> Mini reel dell'evento</li>
+                                <li><i class="fas fa-camera"></i> Set fotografico base (10 foto)</li>
                                 <li><i class="fas fa-share-alt"></i> 2 post + 3 storie social</li>
-                                <li><i class="fas fa-microphone-alt"></i> Attrezzatura professionale</li>
+                                <li><i class="fas fa-film"></i> Mini reel dell'evento</li>
+                                <li><i class="fas fa-users"></i> Team completo</li>
                             </ul>
                         </div>
                         <div class="package-footer">
@@ -76,16 +158,16 @@
                         <div class="package-header">
                             <h3>Pacchetto Premium</h3>
                             <div class="price">180€</div>
-                            <div class="price-note">IVA esclusa</div>
+                            <div class="price-note">da 180€ (infrasettimanale)</div>
                         </div>
                         <div class="package-content">
                             <ul>
                                 <li><i class="fas fa-clock"></i> 5 ore di spettacolo</li>
-                                <li><i class="fas fa-camera"></i> 25 foto professionali</li>
-                                <li><i class="fas fa-video"></i> Video highlights</li>
-                                <li><i class="fas fa-ad"></i> Post sponsorizzato</li>
-                                <li><i class="fas fa-palette"></i> Grafica personalizzata</li>
+                                <li><i class="fas fa-camera"></i> Set fotografico completo (25 foto)</li>
+                                <li><i class="fas fa-video"></i> Video highlights professionali</li>
+                                <li><i class="fas fa-share-alt"></i> Gestione social completa</li>
                                 <li><i class="fas fa-broadcast-tower"></i> Diretta social</li>
+                                <li><i class="fas fa-users"></i> Team completo + professionisti</li>
                             </ul>
                         </div>
                         <div class="package-footer">
@@ -93,6 +175,44 @@
                         </div>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <!-- Tabella Comparativa -->
+        <section class="section comparison">
+            <h2>Confronta i Pacchetti</h2>
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Caratteristiche</th>
+                            <th>Base</th>
+                            <th>Standard</th>
+                            <th>Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Durata</td>
+                            <td>3 ore</td>
+                            <td>4 ore</td>
+                            <td>5 ore</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>-</td>
+                            <td>10 foto</td>
+                            <td>25 foto</td>
+                        </tr>
+                        <tr>
+                            <td>Post Social</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3+</td>
+                        </tr>
+                        <!-- Add more rows... -->
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -107,7 +227,7 @@
                 </div>
                 <div class="extra-item">
                     <i class="fas fa-camera"></i>
-                    <h4>Set Fotografico</h4>
+                    <h4>Set Fotografico Aggiuntivo</h4>
                     <p>40€</p>
                 </div>
                 <div class="extra-item">
@@ -146,10 +266,118 @@
                     <i class="fas fa-exclamation-circle"></i>
                     <p>Prefestivi: +50%</p>
                 </div>
-                <!-- Altre note... -->
+                <div class="note">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Venerdì: +30% | Sabato: +50%</p>
+                </div>
             </div>
         </section>
     </main>
+
+    <script>
+        // Funzione per arrotondare alla decina più vicina
+        function roundToTen(num) {
+            return Math.round(num / 10) * 10;
+        }
+
+        function generateWhatsAppMessage() {
+            // Raccogli i dati del preventivo
+            let pacchetto = $('#base-package option:selected').text();
+            let giorno = $('#day-type option:selected').text();
+            let extras = [];
+            $('.extra:checked').each(function() {
+                extras.push($(this).parent().text().trim());
+            });
+            let continuita = $('#continuative option:selected').text();
+            let distanza = $('#distance').val() || 0;
+            let prezzoFinale = $('#final-price').text();
+
+            // Costruisci il messaggio
+            let message = "Ciao! 👋 Sono interessato a un preventivo con queste caratteristiche:\n\n";
+            message += `📦 ${pacchetto}\n`;
+            message += `📅 ${giorno}\n`;
+            if (extras.length > 0) {
+                message += "➕ Extra selezionati:\n";
+                extras.forEach(extra => message += `   • ${extra}\n`);
+            }
+            if (continuita !== "Singola Serata") {
+                message += `🔄 ${continuita}\n`;
+            }
+            if (distanza > 20) {
+                message += `📍 Distanza da Sassari: ${distanza}km\n`;
+            }
+            message += `\n💰 Preventivo stimato: ${prezzoFinale}€\n\n`;
+            message += "Vorrei maggiori informazioni, grazie!";
+
+            // Codifica il messaggio per URL
+            return encodeURIComponent(message);
+        }
+
+        function calculatePrice() {
+            // Get base values
+            let basePrice = parseFloat($('#base-package').val());
+            let dayMultiplier = parseFloat($('#day-type').val());
+            let continuativeDiscount = parseFloat($('#continuative').val());
+            let distance = parseInt($('#distance').val()) || 0;
+            
+            // Calculate extras, separating sponsorship
+            let extrasTotal = 0;
+            let sponsorshipCost = 0;
+            $('.extra:checked').each(function() {
+                let value = parseFloat($(this).val());
+                if ($(this).parent().text().includes('Post Sponsorizzato')) {
+                    sponsorshipCost = value;
+                } else {
+                    extrasTotal += value;
+                }
+            });
+
+            // Calculate travel cost (if distance > 20km, round trip)
+            let travelCost = 0;
+            if (distance > 20) {
+                let extraKm = distance - 20;
+                travelCost = Math.round(extraKm * 2 * 0.30 * 10) / 10; // A/R e solo oltre i 20km
+            }
+
+            // Calculate all components
+            let dayMarkup = roundToTen(basePrice * (dayMultiplier - 1));
+            // Apply multiplier to base price and extras except sponsorship
+            let subtotal = roundToTen((basePrice + extrasTotal) * dayMultiplier + sponsorshipCost);
+            let discount = roundToTen(subtotal * (1 - continuativeDiscount));
+            let discountedPrice = subtotal * continuativeDiscount;
+            let finalPrice = roundToTen(discountedPrice + travelCost);
+
+            // Update display
+            $('#base-price').text(basePrice);
+            $('#extras-price').text(extrasTotal + sponsorshipCost);
+            $('#day-markup').text(dayMarkup);
+            $('#discount').text(discount);
+            $('#travel-cost').text(Math.round(travelCost));
+            $('#final-price').text(finalPrice);
+            
+            // Debug
+            console.log('Distance:', distance, 'km');
+            console.log('Travel Cost:', travelCost, '€');
+            console.log('Final Price:', finalPrice, '€');
+        }
+
+        // Add event listeners
+        $('#base-package, #day-type, #continuative').change(calculatePrice);
+        $('.extra').change(calculatePrice);
+        $('#distance').on('input change', calculatePrice);
+
+        // Initial calculation
+        $(document).ready(calculatePrice);
+
+        // Aggiungi handler per il pulsante
+        $(document).ready(function() {
+            $('.cta-button').click(function(e) {
+                e.preventDefault();
+                let message = generateWhatsAppMessage();
+                window.open(`https://wa.me/393426631365?text=${message}`, '_blank');
+            });
+        });
+    </script>
 
     <footer>
         <p>&copy; 2024 Quelli del Karaoke Sassari. Tutti i diritti riservati.</p>
