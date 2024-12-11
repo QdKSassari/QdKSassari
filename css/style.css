@@ -39,9 +39,7 @@ nav {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.9);
 }
 
 .nav-links {
@@ -55,6 +53,8 @@ nav {
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInNav 0.5s ease forwards;
 }
 
 .nav-links a:hover {
@@ -584,4 +584,114 @@ footer {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-} 
+}
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.service-link:hover {
+    color: #45a049;
+    gap: 0.8rem;
+}
+
+/* Packages Section */
+.packages-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.packages-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.packages-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.packages-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.packages-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+.packages-features i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Responsive per schermi più piccoli */
+@media (max-width: 768px) {
+    .packages-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .packages-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+.packages-cta {
+    text-align: center;
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.packages-cta .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    min-width: 250px;
+}
+
+.packages-cta .cta-button i {
+    font-size: 1.2rem;
+}
+
+/* Animazione per ogni link del menu con delay progressivo */
+.nav-links li:nth-child(1) a { animation-delay: 0.1s; }
+.nav-links li:nth-child(2) a { animation-delay: 0.2s; }
+.nav-links li:nth-child(3) a { animation-delay: 0.3s; }
+.nav-links li:nth-child(4) a { animation-delay: 0.4s; }
+.nav-links li:nth-child(5) a { animation-delay: 0.5s; }
+.nav-links li:nth-child(6) a { animation-delay: 0.6s; }
+
+@keyframes fadeInNav {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 

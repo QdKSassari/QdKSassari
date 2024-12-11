@@ -8,18 +8,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar trasparente/solida in base allo scroll
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-        nav.style.background = 'rgba(0,0,0,0.9)';
-    } else {
-        nav.style.background = 'rgba(0,0,0,0.8)';
-    }
-});
-
 // Gestione form di contatto
-document.querySelector('.cta-button').addEventListener('click', function(e) {
+document.querySelector('.hero-content .cta-button')?.addEventListener('click', function(e) {
     e.preventDefault();
     document.querySelector('#contatti').scrollIntoView({
         behavior: 'smooth'
@@ -170,16 +160,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         navLinks.classList.remove('active');
         document.body.style.overflow = 'auto';
     });
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
-        nav.classList.add('nav-scrolled');
-    } else {
-        nav.classList.remove('nav-scrolled');
-    }
 });
 
 // Animate sections on scroll

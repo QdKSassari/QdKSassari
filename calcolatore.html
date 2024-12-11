@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcola il preventivo per il tuo evento karaoke a Sassari e provincia">
+    <meta name="keywords" content="calcolo preventivo karaoke, prezzi karaoke sassari, preventivo karaoke">
+    <title>Calcola Preventivo - Quelli del Karaoke Sassari</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pacchetti.css">
+    <link rel="stylesheet" href="css/calcolatore.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Header uguale a index.html -->
+    <header class="hero">
+        <nav>
+            <div class="logo">QDK Sassari</div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="pacchetti.html">Pacchetti</a></li>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content">
+            <h1>Calcola il Tuo Preventivo</h1>
+            <p>Simula il costo del tuo evento in pochi click</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Simulatore di Prezzo -->
+        <section class="price-simulator">
+            <div class="simulator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="base-package">Scegli il Pacchetto:</label>
+                        <select id="base-package" required>
+                            <option value="80">Pacchetto Base</option>
+                            <option value="120">Pacchetto Standard</option>
+                            <option value="180">Pacchetto Premium</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="package-type">Tipo di Pacchetto:</label>
+                        <select id="package-type" required>
+                            <option value="single">Singola Serata</option>
+                            <option value="infra-month">Infrasettimanale Mensile (4 serate, -15%)</option>
+                            <option value="infra-quarter">Infrasettimanale Trimestrale (12 serate, -25%)</option>
+                            <option value="weekend-month">Weekend Mensile (4 serate, -10%)</option>
+                            <option value="weekend-quarter">Weekend Trimestrale (12 serate, -15%)</option>
+                            <option value="mixed-month">Misto Mensile (4 serate, -12%)</option>
+                            <option value="mixed-quarter">Misto Trimestrale (12 serate, -20%)</option>
+                        </select>
+                        <small class="package-info" id="package-info"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="day-type">Giorno della Settimana:</label>
+                        <select id="day-type" required>
+                            <option value="1">Lunedì - Giovedì</option>
+                            <option value="1.2">Venerdì</option>
+                            <option value="1.5">Sabato</option>
+                            <option value="1.3">Domenica</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Servizi Extra:</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" value="30" class="extra"> Ora Aggiuntiva
+                            </label>
+                            <label>
+                                <input type="checkbox" value="40" class="extra" data-included-in="standard,premium"> Set Fotografico Base (10 foto)
+                            </label>
+                            <label>
+                                <input type="checkbox" value="80" class="extra" data-included-in="premium"> Set Fotografico Completo (25 foto)
+                            </label>
+                            <label>
+                                <input type="checkbox" value="80" class="extra" data-included-in="premium"> Video Reel (60s)
+                            </label>
+                            <label>
+                                <input type="checkbox" value="25" class="extra" data-included-in="premium"> Post Sponsorizzato
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Distanza da Sassari (km):</label>
+                        <div class="distance-input">
+                            <input type="number" id="distance" min="0" value="0" step="1">
+                            <span class="info-tooltip" title="Rimborso: 0,30€/km">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                        </div>
+                        <small>Oltre 20km: rimborso 0,30€/km (A/R incluso)</small>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="button" id="calculate-btn" class="cta-button">
+                            <i class="fas fa-calculator"></i> Calcola Preventivo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="price-display">
+                    <h3>Preventivo Stimato</h3>
+                    <div class="final-price">
+                        <span id="final-price">0</span>€
+                        <div class="per-night" id="per-night-container" style="display: none;">
+                            <small>Prezzo per serata:</small>
+                            <span id="price-per-night">0</span>€
+                        </div>
+                    </div>
+                    <div class="price-breakdown">
+                        <div class="breakdown-item">
+                            <span class="label">Pacchetto Base:</span>
+                            <span class="value"><span id="base-price">0</span>€</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Extra Selezionati:</span>
+                            <span class="value"><span id="extras-price">0</span>€</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Maggiorazione Giorno:</span>
+                            <span class="value"><span id="day-markup">0</span>€</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Sconto Pacchetto:</span>
+                            <span class="value">-<span id="discount">0</span>€</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Rimborso Km:</span>
+                            <span class="value"><span id="travel-cost">0</span>€</span>
+                        </div>
+                    </div>
+                    <button class="whatsapp-button" onclick="sendToWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        Richiedi Preventivo su WhatsApp
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/calcolatore.js"></script>
+</body>
+</html> 
